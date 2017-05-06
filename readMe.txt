@@ -1,0 +1,1 @@
+spring-mvc-hibernate：springmvc+spring+hibernate完成简单逻辑功能
