@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- HandlerMapping -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <!-- interceptors：指定拦截器链，拦截器的执行顺序就是此处添加拦截器的顺序； -->
+        <property name="interceptors">
+            <list>
+               <ref bean="stopWatchHandlerInterceptor"/>
+               <ref bean="loginHandlerInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- HandlerAdapter -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    
+    <!-- ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    
+    <!-- 处理器 -->
+    <bean name="/test" class="com.yjy.web.controller.TestController"/>
+    
+    <!-- 拦截器 -->
+    <bean id="handlerInterceptor1" class="com.yjy.web.interceptor.HandlerInterceptor1"/>
+    <bean id="handlerInterceptor2" class="com.yjy.web.interceptor.HandlerInterceptor2"/>
+ 
+ 	<bean id="handlerInterceptor3" class="com.yjy.web.interceptor.HandlerInterceptor3"/>
+    <bean id="handlerInterceptor4" class="com.yjy.web.interceptor.HandlerInterceptor4"/>
+    
+    <bean id="stopWatchHandlerInterceptor" class="com.yjy.web.interceptor.StopWatchHandlerInterceptor"/>
+    
+    
+    <bean name="/login" class="com.yjy.web.controller.LoginController"/>
+
+    <bean id="loginHandlerInterceptor" class="com.yjy.web.interceptor.LoginHanlerInterceptor">
+        <property name="loginUrl" value="/login"></property>
+    </bean>  
+    
+</beans>

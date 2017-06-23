@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+ xmlns:context="http://www.springframework.org/schema/context"  
+ xmlns:p="http://www.springframework.org/schema/p"  
+ xmlns:mvc="http://www.springframework.org/schema/mvc"  
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+     <!-- mvc的注解驱动 -->
+	<mvc:annotation-driven/>
+     <!-- 定义扫描器：(一旦有扫描器的定义mvc:annotation-driven不需要，扫描器已经有了注解驱动的功能) -->
+	<context:component-scan base-package="com.yjy.web.controller" />
+	
+
+	<!-- 静态资源访问 -->
+	 <mvc:resources location="/img/" mapping="/img/**"/>  
+	 <mvc:resources location="/js/" mapping="/js/**"/>   
+	
+	<!-- 前缀+ viewName +后缀 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<mvc:interceptors>
+			<mvc:interceptor>
+				<!-- 某一模块的拦截：/myPath/**, 拦截所有的请求/**-->
+				<mvc:mapping path="/**"/>
+				<bean class="com.yjy.web.controller.interceptor.MyIntercepor"></bean>
+			</mvc:interceptor>
+	</mvc:interceptors>
+ </beans>  

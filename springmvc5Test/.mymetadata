@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="springmvc5Test"
+  id="myeclipse.1445047500832"
+  context-root="/springmvc5Test"
+  j2ee-spec="6.0"
+  archive="springmvc5Test.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
